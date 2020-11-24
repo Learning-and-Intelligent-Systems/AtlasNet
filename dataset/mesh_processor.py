@@ -1,4 +1,4 @@
-import pymesh
+# import pymesh
 import numpy as np
 from os.path import join, dirname
 
