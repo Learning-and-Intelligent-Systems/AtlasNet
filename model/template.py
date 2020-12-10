@@ -38,7 +38,8 @@ class SphereTemplate(Template):
         Return Tensor of Size [x, 3, x ... x]
         """
         assert shape[1] == 3, "shape should have 3 in dim 1"
-        rand_grid = torch.cuda.FloatTensor(shape).to(device).float()
+        FloatTensor = torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
+        rand_grid = FloatTensor(shape).to(device).float()
         rand_grid.data.normal_(0, 1)
         rand_grid = rand_grid / torch.sqrt(torch.sum(rand_grid ** 2, dim=1, keepdim=True))
         return Variable(rand_grid)
